@@ -192,6 +192,10 @@ button:disabled {
     outline: none;
 }
 
+button:focus {
+    outline: none;
+}
+
 .compose button {
     font-size: 14px;
 }
