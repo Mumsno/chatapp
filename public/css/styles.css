@@ -40,7 +40,7 @@ input {
 button {
     cursor: pointer;
     padding: 12px;
-    background: #7C5CBF;
+    background: rgb(80, 158, 54);
     border: none;
     color: white;
     font-size: 16px;
@@ -48,12 +48,12 @@ button {
 }
 
 button:hover {
-    background: #6b47b8;
+    background: rgb(102, 185, 74);
 }
 
 button:disabled {
     cursor: default;
-    background: #7c5cbf94;
+    background: #c0c0c094;
 }
 
 /* Join Page Styles */
@@ -115,7 +115,19 @@ button:disabled {
 /* Message Styles */
 
 .message {
-    margin-bottom: 16px;   
+    margin-bottom: 16px;
+    padding: 6px 10px 0px 20px;
+    background-color: #e6e6e6;
+    border-radius: 10px 10px 10px 0px;
+    color: black;
+    display: inline-block;
+    min-width: 200px;
+}
+
+.me {
+    background-color: #9fe871;
+    border-radius: 10px 10px 0px 10px;
+    float: right
 }
 
 .message__name {
@@ -125,12 +137,16 @@ button:disabled {
 }
 
 .message__meta {
-    color: #777;
+    color: rgb(0, 0, 0);
     font-size: 14px;
 }
 
 .message a {
     color: #0070CC;
+}
+
+.message a:hover {
+    color: rgb(46, 148, 231);
 }
 
 /* Message Composition Styles */
@@ -180,4 +196,19 @@ button:disabled {
     list-style-type: none;
     font-weight: 300;
     padding: 12px 24px 0 24px;
+}
+
+#messages {
+    display: flex;
+    flex-direction: column;
+}
+
+.messageBlock
+{
+    flex-grow: 1
+}
+
+.single-user {
+    padding: 15px;
+    border-bottom: 1px solid #5a5a5a;
 }

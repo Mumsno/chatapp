@@ -19,18 +19,16 @@ io.on('connection', (socket) => {
         if (error) {
             return callback(error)
         }
-        console.log(`Joining ${username} to ${room}`);
-
         socket.join(user.room)
-
         socket.emit('message', generateMessage('System', `Welcome ${username}!`))
         socket.broadcast.to(user.room).emit('message', generateMessage('System', `${username} has joined the room!`))
         io.to(user.room).emit('roomData', {
             room: user.room,
-            users: getUsersInroom(user.room)
+            username: username,
+            isLeft: false
         })
 
-        callback()
+        callback(undefined, {room, users: getUsersInroom(room)})
 
         socket.on('sendMessage', (message, callback) => {
             const filter = new Filter()
@@ -44,19 +42,19 @@ io.on('connection', (socket) => {
             io.to(user.room).emit('LocationMessage', generateMessage(username, `https://google.com/maps?q=${position.latitude},${position.longitude}`))
             callback()
         })
-    })
 
-    socket.on('disconnect', () => {
-        const user = removeUser(socket.id)
-        if (user) {
-            console.log(`${user} disconnected`);
-            io.to(user.room).emit('roomData', {
-                room: user.room,
-                users: getUsersInroom(user.room)
-            })
-            
-            io.to(user.room).emit('message', generateMessage('System', `${user.username} has left`))
-        }
+        socket.on('disconnect', () => {
+            const user = removeUser(socket.id)
+            if (user) {
+                io.to(user.room).emit('roomData', {
+                    room: user.room,
+                    username: username,
+                    isLeft: true
+                })
+                
+                io.to(user.room).emit('message', generateMessage('System', `${username} has left`))
+            }
+        })
     })
 })
 

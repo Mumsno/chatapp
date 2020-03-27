@@ -5,6 +5,8 @@
     <title>Chat App</title>
     <link rel="icon" href='img/favicon.png'>
     <link rel="stylesheet" href='css/styles.css'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/d097a74f42.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -12,7 +14,11 @@
         <div id="sidebar" class="chat__sidebar"></div>
 
         <div class='chat__main'>
-            <div id='messages' class="chat__messages"></div>
+            <div class="chat__messages">
+                <div id='messages'>
+
+                </div>
+            </div>
 
             <div class="compose">
                 <form id="message-form">
@@ -25,31 +31,42 @@
     </div>
 
     <script id="message-template" type="text/html">
-        <div class="message">
-            <p>
-                <span class="message__name">{{username}}</span>
-                <span class="message__meta">{{createdAt}}</span>
-            </p>
-            <p>{{text}}</p>
+        <div class="messageBlock">
+            <div class="message">
+                <p>
+                    <span class="message__name">{{username}}</span>
+                </p>
+                <p>{{text}}</p>
+                <span style="display: flex; flex-direction: row;">
+                    <span style="fle
+                    x-grow: 1;"></span>
+                    <span class="message__meta">{{createdAt}}</span>
+                </span>
+            </div>
         </div>
     </script>
 
     <script id="location-message-template" type="text/html">
-        <div>
-            <p>
-                <span class="message__name">{{username}}</span>
-                <span class="message__meta">{{createdAt}}</span>
-            </p>
-            <a href="{{text}}" target='_blank'>My Current Location</a>
+        <div class="messageBlock">
+            <div class="message">
+                <p>
+                    <span class="message__name">{{username}}</span>
+                </p>
+                <a href="{{text}}" target='_blank'>My Current Location</a>
+                <span style="display: flex; flex-direction: row;">
+                    <span style="flex-grow: 1;"></span>
+                    <span class="message__meta">{{createdAt}}</span>
+                </span>
+            </div>
         </div>
     </script>
 
     <script id="sidebar-template" type="text/html">
-        <h2 class="room-title">{{room}}</h2>
-        <h3 class="list-title">Users<h3>
+        <h2 class="room-title">Room: {{room}}</h2>
+        <!-- <h3 class="list-title">Users<h3> -->
         <ul class="users">
             {{#users}}
-                <li>{{username}}</li>
+        <li class="single-user""><i class="fas fa-user" style="color: {{color}}"></i>&nbsp;&nbsp;{{username}}</li>
             {{/users}}
         </ul>
     </script>
