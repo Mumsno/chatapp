@@ -201,7 +201,7 @@ button:disabled {
 
 .room-title {
     font-weight: 400;
-    font-size: 22px;
+    font-size: 1.2em;
     background: #2c2f3a;
     padding: 24px;
 }
@@ -236,4 +236,5 @@ button:disabled {
 .single-user {
     padding: 15px;
     border-bottom: 1px solid #5a5a5a;
+    font-size: 0.95em;
 }
